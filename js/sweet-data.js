@@ -1,3 +1,4 @@
+// start with simple props
 let inventory = [
     {
         name: "Christmas Tree",
@@ -8,8 +9,8 @@ let inventory = [
     },
     {
         name: "Christmas Tree",
-        kind: "cake",
-        flavor: "red velvet",
+        kind: "brownie",
+        flavor: "dark chocolate",
         topping: "sprinkles",
         topcolor: "red"
     }
