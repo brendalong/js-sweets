@@ -1,0 +1,18 @@
+{
+    "items": {
+        "item0": {
+            "name": "Christmas Tree",
+            "kind": "cake",
+            "flavor": "red velvet",
+            "topping": "sprinkles",
+            "topcolor": "white"
+        },
+        "item1": {
+            "name": "Christmas Tree",
+            "kind": "cake",
+            "flavor": "redvelvet",
+            "topping": "sprinkles",
+            "topcolor": "red"
+        }
+    }
+}
