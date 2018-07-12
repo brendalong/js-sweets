@@ -28,7 +28,7 @@ const getFancy = document.querySelectorAll(".fancy");
 console.log("getFancy", getFancy);
 
 // declared vs expression
-// test the position (top of page or bottom of page) of invoking howmanySweets as a declared and expression 
+// test the position (top of page or bottom of page) of invoking howmanySweets as a declared and expression
 
 // function howmanySweets(){
 //     console.log("The sweets total:", inventory.length);
@@ -41,7 +41,7 @@ console.log("getFancy", getFancy);
 //     console.log("The sweets total:", inventory.length);
 //     var numberOfSweets = inventory.length;
 // }
-// howmanySweets(); 
+// howmanySweets();
 // doesn't do much good since it does not return anything.
 
 //now we can call anytime to get the number
@@ -65,17 +65,19 @@ btnGetTotalAmounts.addEventListener("click", totalNumberSweets);
 
 
 // Define what a Sweet is ()
-function Sweet(name, kind, flavor, topping, topcolor){
-    this.name = name;
-    this.kind = kind;
-    this.flavor = flavor;
-    this.topping = topping;
-    this.topcolor = topcolor;
-};
+// function Sweet(name, kind, flavor, topping, topcolor){
+//     this.name = name;
+//     this.kind = kind;
+//     this.flavor = flavor;
+//     this.topping = topping;
+//     this.topcolor = topcolor;
+// };
+
+
 
 // click button and add green one to inventory
 function addGreenOne(){
-    inventory.push(new Sweet("Christmas Tree", "cake", "white", "none", "green"));
+    inventory.push(makeSweetObj("Christmas Tree", "cake", "white", "none", "green"));
     console.log(inventory);
     //What about updating the list? and showing all. Look below.
 }
@@ -89,13 +91,32 @@ addGreenSweet.addEventListener("click", addGreenOne);
 
 
 // // now want to show them all
-// // what would be the flow of events? 
+// // what would be the flow of events?
 // push item to array
 // show array in DOM
 
 // does one thing really well
 function makeSweetObj(name, kind, flavor, topping, topcolor){
-    return new Sweet(name, kind, flavor, topping, topcolor);
+   const sweet = Object.create({}, {
+      name: {
+         value: name
+      },
+      kind: {
+         value: kind
+      },
+      flavor: {
+         value: flavor
+      },
+      icing: {
+         value: topping
+      },
+      topcolor: {
+         enumerable: true,
+         writable: true,
+         value: topcolor
+      }
+   })
+    return sweet;
 }
 
 // does one thing really well
@@ -122,35 +143,53 @@ btnAddSweet.addEventListener("click", addNewSweet);
 /////////// now let's bake a sweet
 // some are cakes and some are brownies
 
-//newVersion - take out the above 
+//newVersion - take out the above
 // change the object to account for each method
-
-// function Sweet(name, kind, flavor, topping, topcolor){
-//     this.name = name;
-//     this.kind = kind;
-//     this.flavor = flavor;
-//     this.topping = topping;
-//     this.topcolor = topcolor;
-//     this.bake = function() {
-//         let ovenTemp = 300; // default value
-//         if (this.kind == "cake"){
-//             ovenTemp = 350;
-//         }else if (this.kind == "brownie"){
-//             ovenTemp = 375;
-//         }
-//         return ovenTemp;
-//     }
-// };
+// function makeSweetObj(name, kind, flavor, topping, topcolor) {
+//    const sweet = Object.create({}, {
+//       name: {
+//          value: name
+//       },
+//       kind: {
+//          value: kind
+//       },
+//       flavor: {
+//          value: flavor
+//       },
+//       icing: {
+//          value: topping
+//       },
+//       topcolor: {
+//          enumerable: true,
+//          writable: true,
+//          value: topcolor
+//       },
+//       bake: {
+//          value: () => {
+//          let ovenTemp = 300; // default value
+//          if (this.kind == "cake"){
+//                ovenTemp = 350;
+//          }else if (this.kind == "brownie"){
+//                ovenTemp = 375;
+//          }
+//          return ovenTemp;
+//          },
+//          enumerable: false,
+//          writeable: false,
+//       }
+//    })
+//    return sweet;
+// }
 
 // //recreate inventory with new object constructor
 // //why - bake is not in the first ones
 
 // let newInventory = [];
 // function makeNewInventory(){
-//         inventory.forEach((item, index) =>{
-//         console.log("inventory item", item);
-//         newInventory.push(makeSweetObj(item.name, item.kind, item.flavor, item.topping, item.topcolor))
-//     });
+//       inventory.forEach((item, index) =>{
+//          console.log("inventory item", item);
+//          newInventory.push(makeSweetObj(item.name, item.kind, item.flavor, item.topping, item.topcolor));
+//       });
 // }
 // makeNewInventory();
 // console.log("NEW INVENTORY", newInventory);
@@ -159,7 +198,7 @@ btnAddSweet.addEventListener("click", addNewSweet);
 //     let item = newInventory[0];
 //     console.log("item to bake", item);
 //     let ovenTemp = item.bake();
-//     console.log("ovenTemp", ovenTemp); 
+//     console.log("ovenTemp", ovenTemp);
 // }
 
 // const btnBakeSweet = document.getElementById("btn-bakeSweet");
